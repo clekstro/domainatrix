@@ -13,7 +13,7 @@ module Domainatrix
 
       @parts.each_with_index do |part, i|
         sub_hash = sub_parts = sub_hash[part] || {}
-        process_with_wildcards(part, i) && break if sub_parts.has_key? "*"
+        process_with_wildcards(part, i) and break if sub_parts.has_key? "*"
         process_with_empties(part, i) and break if sub_parts.empty? || !sub_parts.has_key?(@parts[i+1])
         @public_suffix << part
       end
